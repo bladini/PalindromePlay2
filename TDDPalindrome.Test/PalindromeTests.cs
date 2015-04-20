@@ -7,7 +7,7 @@ namespace TDDPalindrome.Test
     public class PalindromeTests
     {
         private PalindromeFinder _palindromeFinder = null;
-        
+
         [TestInitialize]
         public void InitTest()
         {
@@ -48,28 +48,63 @@ namespace TDDPalindrome.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        //[ExpectedException(typeof(ArgumentNullException))]
         public void IsPalindromeThrowsArgumentNullException()
         {
             //Arrange
             string value = null;
+            try
+            {
+                //Act
+                bool actual = _palindromeFinder.IsPalindrome(value);
 
-            //Act
-            bool actual = _palindromeFinder.IsPalindrome(value);
+                // If no exception is thrown, then it fails.
+                Assert.Fail("Expected ArgumentNullException");
 
-            
+            }
+            catch (ArgumentNullException)
+            {
+
+                //This is what should happen. No fail.
+            }
+            catch
+            {
+                // If another exception is trhown, then it fails.
+                Assert.Fail("Expected ArgumentNullException");
+
+            }
+
+
+
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void IsPalindromeThrowsArgumentException()
         {
             //Arrange
             string value = "a";
 
-            //Act
-            bool actual = _palindromeFinder.IsPalindrome(value);
+            try
+            {
+                //Act
+                bool actual = _palindromeFinder.IsPalindrome(value);
 
+                // If no exception is thrown, then it fails.
+                Assert.Fail("Expected ArgumentException");
+
+            }
+            catch (ArgumentException)
+            {
+
+                //This is what should happen. No fail.
+            }
+            catch
+            {
+                // If another exception is trhown, then it fails.
+                Assert.Fail("Expected ArgumentException");
+
+            }
         }
 
 
